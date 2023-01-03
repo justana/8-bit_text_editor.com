@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <style>
+      body {
+        background-color: #00FF00;
+      }
+      textarea {
+        width: 100%;
+        height: 100%;
+        color: #00FF00;
+        background-color: #000000;
+        font-size: 18px;
+      }
+      button {
+        border: none;
+        background-color: transparent;
+        color: black;
+        cursor: pointer;
+        font-size: 12pt;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="editor"></textarea>
+    <br>
+    <button id="save-button">Save</button>
+    <script>
+      // Add event listener to save button
+      var saveButton = document.querySelector("#save-button");
+      saveButton.addEventListener("click", function() {
+        // Get text from textarea
+        var text = document.querySelector("#editor").value;
+
+        // Create a link element
+        var link = document.createElement("a");
+
+        // Set the link's href and download attributes
+        link.href = "data:text/plain," + encodeURIComponent(text);
+        link.download = "text.txt";
+
+        // Append the link to the body and click it
+        document.body.appendChild(link);
+        link.click();
+
+        // Remove the link from the body
+        document.body.removeChild(link);
+      });
+    </script>
+  </body>
+</html>
